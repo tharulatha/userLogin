@@ -1,0 +1,95 @@
+.userRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.registerFormContainer{
+   background-color: #a498dc;
+    padding: 50px;
+}
+
+.userRegister h1{
+    color: white;
+    margin: 5px;
+    text-align: center;
+}
+
+.registerForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.inputContainer label{
+    color: white;
+    font-weight: 600;
+    margin: 3px 0;
+}
+
+.formInput{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(215, 215, 215);
+}
+
+.registerBtnContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.registerBtnContainer button {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background-color: #383838;
+
+}
+
+.userLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 130px 0px;
+}
+
+.loginConatiner{
+    display: flex;
+    justify-content: center;
+   flex-direction: column;
+   background-color: #a498dc;
+   padding: 30px;
+   border-radius: 5px;
+   box-shadow: 10px 10px 8px #888888;
+
+}
+
+.loginConatiner h1{
+    text-align: center;
+}
+
+.loginBtnContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 5px;
+}
+
+.loginBtnContainer button {
+    padding: 10px 20px;
+    background-color: #383838;
+    color: white;
+    border: none;
+    border-radius: 20px;
+
+}
