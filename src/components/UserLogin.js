@@ -1,50 +1,61 @@
-import { React, useState } from "react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const UserLogin = ({ userInfo }) => {
-  const [userLogin, setUserLogin] = useState({
+const UserLogin = ({ data }) => {
+  const [loginData, setloginData] = useState({
     username: "",
     password: "",
   });
-    const [loginData, setLoginData] = useState([]);
-    // console.log(userInfo);
+
+  const location = useLocation();
+
+  const navigate = useNavigate()
+  const redirect = location?.state?.path || '/user'
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserLogin({ ...userLogin, [name]: value });
+    setloginData({ ...loginData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = userInfo.filter(
-      (value) =>
-        value.username === userLogin.username &&
-        value.password === userLogin.password
-      );
-    //   console.log(data);
+    const user = data.filter(
+      (val) =>
+        val.username === loginData.username &&
+        val.password === loginData.password
+    );
 
-    if (data.length > 0) {
-      setLoginData(userLogin);
+    if (user.length > 0) {
       alert("Login Successfully!!");
-      console.log(loginData);
+      setloginData({
+        username: "",
+        password: ""
+      })
+      navigate(redirect, {replace: true})
+      
     } else {
-        alert("Login failed!!");  
+      alert("Login Failed!!");
+      setloginData({
+        username: "",
+        password: ""
+      })
     }
   };
 
   return (
-    <div className="userLogin">
-      <div className="loginConatiner">
+    <div className="formContainer">
+      <div className="userForm">
         <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="loginForm" onSubmit={handleSubmit}>
           <div className="inputContainer">
             <label>Username</label>
             <input
               type="text"
-              className="formInput"
               name="username"
-              placeholder="Enter your username"
+              placeholder="Enter the username"
+              value={loginData.username}
               onChange={handleChange}
-              value={userLogin.username}
+              className="inputField"
               required
             />
           </div>
@@ -52,16 +63,16 @@ const UserLogin = ({ userInfo }) => {
             <label>Password</label>
             <input
               type="password"
-              className="formInput"
               name="password"
-              placeholder="Enter your Password"
+              placeholder="Enter the password"
+              value={loginData.password}
               onChange={handleChange}
-              value={userLogin.password}
+              className="inputField"
               required
             />
           </div>
-          <div className="loginBtnContainer">
-            <button type="submit">Login</button>
+          <div className="btnConatiner">
+            <button>Login</button>
           </div>
         </form>
       </div>

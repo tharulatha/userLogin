@@ -1,19 +1,22 @@
-import { React, useState } from 'react';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import UserRegister from "./components/UserRegister"
+import UserRegister from './components/UserRegister'
+import './App.css'
+import { useState } from 'react'
 import UserLogin from './components/UserLogin';
+import { Routes, Route } from 'react-router-dom';
+import User from './components/User';
+import UserForm from './components/UserForm';
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState([]);
-  // console.log(userInfo);
+  const [data, setData] = useState([]);
+console.log(data);
   return (
     <div>
       <Routes>
-        <Route path='/' element={<UserRegister setUserInfo={setUserInfo} />} />
-        <Route path='/login' element={<UserLogin userInfo={userInfo} />} />
+        <Route path='/' element={<UserRegister setData={setData}/>} />
+        <Route path='/login' element={<UserLogin data={data} />} />
+        <Route path='/user' element={<User data={data} />} />
+        <Route path='/form' element={<UserForm/>} />
       </Routes>
-
     </div>
   )
 }
