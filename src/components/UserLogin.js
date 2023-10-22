@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import userContext from "../utils/userContext";
 
 const UserLogin = ({ data }) => {
   const [loginData, setloginData] = useState({
@@ -7,6 +8,9 @@ const UserLogin = ({ data }) => {
     password: "",
   });
 
+  const {user} = useContext(userContext);
+// console.log(user[0].username);
+  
   const location = useLocation();
 
   const navigate = useNavigate()
@@ -19,13 +23,13 @@ const UserLogin = ({ data }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = data.filter(
-      (val) =>
-        val.username === loginData.username &&
-        val.password === loginData.password
-    );
+ 
+    const username = user[0].username;
+    const password = user[0].password;
 
-    if (user.length > 0) {
+    
+
+    if (username === loginData.username && password === loginData.password) {
       alert("Login Successfully!!");
       setloginData({
         username: "",

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const UserRegister = ({setData}) => {
@@ -8,6 +8,19 @@ const UserRegister = ({setData}) => {
     phone: "",
     password: ""
   });
+  const [register, setRegister] = useState(() => {
+    const localValue = localStorage.getItem("Users")
+    if (localValue == null) return []
+  
+    return JSON.parse(localValue)
+  });
+
+  console.log(register);
+
+  useEffect(() => {
+    localStorage.setItem("Users", JSON.stringify(register))
+}, [register])
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,7 +34,8 @@ const UserRegister = ({setData}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      setData([userInput]);
+    setData([userInput]);
+    setRegister([...register, userInput])
     alert("Register Successfully!!");
     setUserInput({
       username: "",
